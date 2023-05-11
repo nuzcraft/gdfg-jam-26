@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://b23wgf7x7ugqy"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_6tqtp"]
+[ext_resource type="PackedScene" uid="uid://d160a4mtduhhq" path="res://scenes/shield/shield.tscn" id="1_clvtk"]
+[ext_resource type="PackedScene" uid="uid://bkggq57nmnmo7" path="res://scenes/city/city.tscn" id="3_c3a25"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_6tqtp")
+
+[node name="Shield" parent="." instance=ExtResource("1_clvtk")]
+position = Vector2(154, 505)
+
+[node name="Shield2" parent="." instance=ExtResource("1_clvtk")]
+position = Vector2(414, 479)
+
+[node name="Shield3" parent="." instance=ExtResource("1_clvtk")]
+position = Vector2(669, 486)
+
+[node name="Shield4" parent="." instance=ExtResource("1_clvtk")]
+position = Vector2(951, 502)
+
+[node name="City" parent="." instance=ExtResource("3_c3a25")]
+position = Vector2(581, 618)
+
+[node name="MissileTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1150.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 94.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "City Health: 100"
+
+[node name="TimerLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="city_damaged" from="City" to="." method="_on_city_city_damaged"]
+[connection signal="timeout" from="MissileTimer" to="." method="_on_missile_timer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
