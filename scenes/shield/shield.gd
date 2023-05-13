@@ -16,5 +16,5 @@ func _input(event):
 			selected = false
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("missile"):
+	if body.is_in_group("missile") and not selected:
 		body.blow_up()		

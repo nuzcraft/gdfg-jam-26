@@ -52,7 +52,7 @@ offset_right = 94.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "City Health: 100"
+text = "Health: 100"
 
 [node name="TimerLabel" type="Label" parent="Control"]
 layout_mode = 1
